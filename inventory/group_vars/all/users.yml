@@ -1,0 +1,4 @@
+---
+# vars file for all group
+users:
+  - username: "ansible"
