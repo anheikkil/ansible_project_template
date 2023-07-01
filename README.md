@@ -1,2 +1,3 @@
-# ansible_project_template
-This repository contains my Ansible project template
+# Ansible Role template
+
+This repository contains my Ansible project template for Debian and Alpine Linux.
