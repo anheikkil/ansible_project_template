@@ -1,0 +1,20 @@
+---
+# playbook for localhost
+- name: Update localhost
+  hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update package cache (debian, etc)
+      when: ansible_facts['distribution'] == "Debian"
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Update package cache (alpine)
+      when: ansible_facts['distribution'] == "Alpine"
+      community.general.apk:
+        update_cache: true
+
+- name: Provision and configure template
+  hosts: all
+  roles:
+    - template
