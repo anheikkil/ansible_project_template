@@ -3,7 +3,7 @@
 - name: Set variables
   ansible.builtin.include_tasks: tasks/set_vars.yml
 
-- name: Perform distribution/version specific tasks
+- name: Perform os/version specific tasks
   ansible.builtin.include_tasks: "{{ lookup('first_found', template_ff_params) }}"
   vars:
     template_ff_params:
@@ -11,9 +11,9 @@
         - "{{ ansible_facts['distribution'] }}_{{ ansible_facts['distribution_version'] }}.yml"
         - "{{ ansible_facts['distribution'] }}_{{ ansible_facts['distribution_major_version'] }}.yml"
         - "{{ ansible_facts['distribution'] }}.yml"
-#        - "{{ ansible_facts['os_family'] }}.yml"
+        - "{{ ansible_facts['os_family'] }}.yml"
       paths:
-        - "{{ role_path }}/tasks/distributions"
+        - "{{ role_path }}/tasks/os"
       skip: true
 
 # - name: Perform distribution/version specific tasks
@@ -27,4 +27,4 @@
 #         - "{{ ansible_facts['os_family'] }}.yml"
 #         - "default.yml"
 #       paths:
-#         - "{{ role_path }}/tasks/distributions"
+#         - "{{ role_path }}/tasks/os"

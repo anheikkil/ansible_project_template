@@ -6,7 +6,7 @@
   ansible.builtin.setup:
     gather_subset: min
 
-- name: Include distribution/version specific variables
+- name: Include os/version specific variables
   when: template_vars_file is file
   ansible.builtin.include_vars: "{{ template_vars_file }}"
   loop:
@@ -15,4 +15,4 @@
     - "{{ ansible_facts['distribution'] }}_{{ ansible_facts['distribution_major_version'] }}.yml"
     - "{{ ansible_facts['distribution'] }}_{{ ansible_facts['distribution_version'] }}.yml"
   vars:
-    template_vars_file: "{{ role_path }}/vars/distributions/{{ item }}"
+    template_vars_file: "{{ role_path }}/vars/os/{{ item }}"
